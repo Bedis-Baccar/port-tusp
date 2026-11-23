@@ -1,0 +1,27 @@
+{
+  "station": "variant station",
+  "scenario": "scenario 3",
+  "params": {
+    "time_limit_s": 350,
+    "method": "bp",
+    "cg_gaps": [
+      0.0,
+      0.001,
+      0.005,
+      0.01
+    ],
+    "heuristic_every": 5,
+    "diving": true,
+    "dive_cg_gap": 0.05,
+    "mip_heuristic": true,
+    "mip_time_s": 15,
+    "branching": "auto",
+    "search": "bbf",
+    "threads": 0,
+    "link_conflicts": true,
+    "conflict_rows": 5180
+  },
+  "state": "finished",
+  "created": "2026-11-04",
+  "note": "exemple de run (Gurobi) ; solution.json reconstruit depuis la dernière solution de trace.jsonl"
+}

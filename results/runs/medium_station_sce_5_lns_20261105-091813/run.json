@@ -1,0 +1,43 @@
+{
+  "station": "medium station",
+  "scenario": "scenario 5",
+  "params": {
+    "time_limit_s": 550,
+    "method": "lns",
+    "link_conflicts": true,
+    "root_cg_gap": 0,
+    "lns_init_frac": 0.3,
+    "lns_max_frac": 0.7,
+    "lns_mip_time_s": 5,
+    "lns_cg_gap": 0.001,
+    "lns_root_mip_time_s": 10,
+    "lns_root_time_frac": 0.3,
+    "lns_seed": 1,
+    "lns_bound_pruning": true,
+    "lns_max_iter": 0,
+    "lns_operators": [
+      "random",
+      "time",
+      "related",
+      "dual",
+      "rejected",
+      "bottleneck"
+    ],
+    "lns_repairs": [
+      "greedy",
+      "regret",
+      "dive",
+      "dive_mip"
+    ],
+    "lns_accept": "sa",
+    "lns_sa_start": 0.02,
+    "lns_sa_end": 0.0005,
+    "lns_segment": 10,
+    "lns_reaction": 0.3,
+    "lns_iter_time_frac": 0.03,
+    "threads": 0
+  },
+  "state": "finished",
+  "created": "2026-11-05",
+  "note": "exemple de run (Gurobi) ; solution.json reconstruit depuis la dernière solution de trace.jsonl"
+}

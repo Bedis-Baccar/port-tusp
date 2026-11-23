@@ -1,0 +1,48 @@
+# Build artifacts
+obj/
+tusp_solver
+build/
+
+.env
+
+# Solution files
+solutions_log/
+iterations_pricing**
+*.log
+results**.txt
+
+#Zone identifier
+*.Zone.Identifier 
+# Gurobi license / logs (never commit licenses)
+*.lic
+gurobi_log.txt
+results/runs/*/gurobi_log.txt
+
+# Web app
+node_modules/
+app/frontend/dist/
+__pycache__/
+.pytest_cache/
+*.pyc
+.venv/
+app/.venv/
+
+# LaTeX build files
+*.aux
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+
+# Runs: only the committed examples are tracked
+results/runs/*
+!results/runs/variant_station_sce_3_bp_20261104-133353/
+!results/runs/medium_station_sce_5_lns_20261105-091813/
+!results/runs/medium_station_sce_5_lns_20261106-130557/
+
+# Local tooling
+.claude/
+.vscode/
+.idea/
+.DS_Store
