@@ -35,7 +35,8 @@
     "lns_segment": 10,
     "lns_reaction": 0.3,
     "lns_iter_time_frac": 0.03,
-    "threads": 0
+    "threads": 0,
+    "seed": 1
   },
   "state": "finished",
   "created": "2026-11-05",
