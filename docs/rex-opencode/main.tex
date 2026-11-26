@@ -398,19 +398,20 @@
   \vspace{0.05cm}
   \noindent\begin{minipage}[t]{8.6cm}\vspace*{0pt}
     \IfFileExists{img/doc-structure.png}
-      {\tikz\node[inner sep=0pt,draw=cline,line width=0.4pt]{\includegraphics[width=8.6cm,height=4.9cm,keepaspectratio]{img/doc-structure.png}};}
+      {\tikz\node[inner sep=0pt,draw=cline,line width=0.4pt,drop shadow={opacity=0.08,shadow xshift=0pt,shadow yshift=-0.8pt}]{\includegraphics[width=8.6cm,height=4.55cm,keepaspectratio]{img/doc-structure.png}};\par
+       \vspace{4pt}{\labelfont\fontsize{4.8}{5}\selectfont\color{mute}LP-EASYDRIVER-LD · PAGE D’ACCUEIL DE LA DOCUMENTATION}}
       {\docmock}
   \end{minipage}\hfill
   \begin{minipage}[t]{4.85cm}\vspace*{0pt}
     \vspace{2pt}
-    \principle{01}{Le plan avant la première page}{Les sections et le gabarit d’une fiche sont fixés par nous, pas par l’agent.}
-    \principle{02}{Une section, un besoin}{Comprendre, démarrer, utiliser, chercher une méthode, lire les sorties, dépanner.}
-    \principle{03}{Une fiche type, répétée}{Schéma, description, appel avec exemple, paramètres~: chaque méthode a la même forme.}
+    \principle{01}{Le plan avant la première page}{Trois parties, fixées par nous avant d’écrire.}
+    \principle{02}{Un besoin, une section}{Le guide d’orientation renvoie chaque besoin vers sa page.}
+    \principle{03}{Une fiche type, répétée}{Schéma, description, exemple, paramètres~: même forme partout.}
     \vspace{2pt}
     \pull{L’agent remplit la structure~; il ne la décide pas.}
   \end{minipage}
 \end{frame}}
-\note{Avant d’écrire quoi que ce soit, on a fixé nous-mêmes le squelette de la documentation, et c’est le même pour les deux chantiers~: comprendre (vue d’ensemble métier, le moteur expliqué simplement), démarrer (prise en main, cas complet de bout en bout), utiliser (les entrées .dbg, JSON et C/C++), la référence (une fiche par méthode, l’usage courant en haut de page et le paramétrage avancé en bas), l’exploitation des sorties (CSV, SVG) et le dépannage (erreurs, exceptions, diagnostics). Chaque fiche méthode suit le même gabarit. Ensuite seulement on demande à l’agent de remplir les cases. Deux règles de rédaction complètent la structure~: aucune cuisine interne (pas de chemin local, pas de mention des tests internes, des exemples valides tirés des signatures réelles) et une seule source de vérité par tableau, les autres pages renvoyant vers elle en 2 ou 3 phrases.}
+\note{Avant d’écrire quoi que ce soit, on a fixé nous-mêmes le squelette de la documentation. La capture est la page d’accueil de LP-EasyDriver-LD~: trois parties. Un, compréhension globale et exécution~: le modèle métier, la modélisation et l’optimisation expliquées du fichier .dbg jusqu’au plan, l’utilisation, un glossaire. Deux, le référentiel des méthodes et paramètres, avec l’usage courant en haut de chaque page et le paramétrage avancé en bas. Trois, les fichiers d’entrée, un guide complet de bout en bout, la lecture des 14 CSV et du SVG, les erreurs et diagnostics. En tête de page, le guide d’orientation rapide part du besoin du lecteur et le renvoie vers la bonne section. Sur LP-ShiftPlanner, même logique avec trois entrées (.dbg, JSON, C/C++). Chaque fiche méthode suit le même gabarit. Ensuite seulement on demande à l’agent de remplir les cases. Deux règles de rédaction complètent la structure~: aucune cuisine interne (pas de chemin local, pas de mention des tests internes, des exemples valides tirés des signatures réelles) et une seule source de vérité par tableau, les autres pages renvoyant vers elle en 2 ou 3 phrases.}
 
 % ===================================================================== méthode · rôles (merges "un agent par rôle" and "piloter")
 {\light\kicker{01}{La méthode}
