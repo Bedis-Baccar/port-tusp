@@ -149,9 +149,9 @@
 \newcommand{\wstep}[4][card]{\cardbox[#1]{\w}{\h}{#2\vfill #3#4}}
 \newcommand{\tip}[3]{%
   \noindent\begin{minipage}[t]{0.6cm}\leavevmode\code{\textbf{#1}}\end{minipage}%
-  \begin{minipage}[t]{3.6cm}\leavevmode{\fontsize{7.6}{9}\selectfont\bfseries #2}\end{minipage}%
-  \begin{minipage}[t]{9.6cm}\leavevmode{\fontsize{6.8}{8.6}\selectfont\color{body}#3}\end{minipage}\par
-  \vspace{5pt}{\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}}
+  \begin{minipage}[t]{3.6cm}\raggedright\leavevmode{\fontsize{7.6}{9}\selectfont\bfseries #2\par}\end{minipage}%
+  \begin{minipage}[t]{9.6cm}\raggedright\leavevmode{\fontsize{6.8}{8.6}\selectfont\color{body}#3\par}\end{minipage}\par
+  \vspace{5pt}{\color{cline}\hrule height 0.4pt}\vspace{5pt}}
 \newcommand{\li}[2][blue]{\noindent\begin{minipage}[t]{0.35cm}\vspace{1pt}\tikz\fill[#1](0,0)rectangle(0.09,0.09);\end{minipage}\begin{minipage}[t]{\dimexpr\linewidth-0.4cm}#2\end{minipage}\par\vspace{6pt}}
 \newcommand{\fileitem}[2]{\code[lime]{\textbf{#1}}\par\vspace{1pt}{\fontsize{6}{7.6}\selectfont\color{dmute}#2}\par\vspace{7pt}}
 \newcommand{\pstep}[5][card]{\cardbox[#1]{\w}{\h}{#2#3#4\vfill #5}}
@@ -159,7 +159,12 @@
   \noindent\begin{minipage}[t]{0.8cm}\leavevmode\code{\textbf{#1}}\end{minipage}\begin{minipage}[t]{7cm}\leavevmode{\fontsize{7.2}{9}\selectfont\bfseries #2}\par\vspace{1pt}{\fontsize{6.2}{8}\selectfont\color{body}#3}\end{minipage}\par\vspace{3pt}}
 \newcommand{\tagbox}[1]{\tikz[baseline=(p.base)]\node[fill=blue!10,text=blue,inner xsep=2.5pt,inner ysep=1.6pt,font=\labelfont\fontsize{5}{6}\selectfont](p){\MakeUppercase{#1}};\par\vspace{4pt}}
 \newcommand{\cardfoot}[2][blue]{\vfill{\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{4pt}{\fontsize{5.6}{7}\selectfont\color{body}\tikz[baseline=-0.3ex]\fill[#1](0,0)rectangle(0.07,0.07);\; #2}\par}
-\newcommand{\ck}[1]{{\color{ink!25}\rule{\linewidth}{0.4pt}}\par\vspace{7pt}\noindent\tickmark[ink]\hspace{6pt}{\fontsize{8.2}{10}\selectfont\bfseries #1}\par\vspace{7pt}}
+\newcommand{\ck}[1]{{\color{ink!25}\rule{\linewidth}{0.4pt}}\par\vspace{3pt}\noindent\tickmark[ink]\hspace{6pt}{\fontsize{8.2}{10}\selectfont\bfseries #1}\par\vspace{3pt}}
+% labelled fact line (comparison cards)
+\newcommand{\factline}[3][mute]{\noindent\begin{minipage}[t]{2.0cm}\leavevmode{\labelfont\fontsize{5}{6}\selectfont\color{#1}\MakeUppercase{#2}}\end{minipage}%
+  \begin{minipage}[t]{\dimexpr\linewidth-2.0cm}\raggedright\leavevmode{\fontsize{6.6}{8.4}\selectfont #3\par}\end{minipage}\par\vspace{5pt}}
+\definecolor{crit}{HTML}{C0392B}
+\definecolor{major}{HTML}{B45309}
 \def\kw#1{{\color{peri}#1}}\def\cmt#1{\hfill{\color{dmute!70}\# #1}\hspace*{9pt}}
 
 % speaker notes: \note{…} after each frame’s body
@@ -198,13 +203,13 @@
       \dchip{\color{peri}RETOUR D’EXPÉRIENCE}\hspace{3pt}\dchip{\color{peri}OPENCODE}\hspace{3pt}\dchip{\color{peri}IA AGENTIQUE}};
     \node[anchor=north west,inner sep=0,text width=8.6cm,align=left] at ($(current page.north west)+(1.05,-2.45)$) {%
       {\headfont\fontsize{30}{31}\selectfont\color{white}L’IA agentique\\au quotidien}\par\vspace{9pt}
-      {\fontsize{8}{10.5}\selectfont\color{dmute}\parbox{6.4cm}{\raggedright Agents spécialisés, modèles, outils et bonnes pratiques~: les leçons d’un chantier de documentation Sphinx}}};
+      {\fontsize{8}{10.5}\selectfont\color{dmute}\parbox{6.4cm}{\raggedright Agents spécialisés, modèles, outils et bonnes pratiques~: les leçons de deux chantiers de documentation Sphinx}}};
     \draw[navyline,line width=0.4pt] ($(current page.south west)+(1.05,1.3)$) -- ($(current page.south east)+(-1.05,1.3)$);
     \node[anchor=base west,inner sep=0,font=\ttfamily\fontsize{6.2}{7}\selectfont,text=lime] at ($(current page.south west)+(1.05,0.85)$) {\$ sphinx-build -W --keep-going user\_doc/src user\_doc/build/html};
     \node[anchor=base east,inner sep=0,font=\labelfont\fontsize{6}{7}\selectfont,text=white] at ($(current page.south east)+(-1.05,0.85)$) {Bedis · Novembre 2026};
   \end{tikzpicture}
 \end{frame}}
-\note{Présentation en trois actes~: ce qu’on a fait sur la doc de LP-ShiftPlanner, ce qu’on en retient, puis comment mieux s’y prendre avec OpenCode. La commande affichée en bas est celle qui a servi de garde-fou pendant tout le chantier.}
+\note{Présentation en trois actes~: ce qu’on a fait sur deux chantiers de documentation (LP-ShiftPlanner, puis LP-EasyDriver-LD parti de zéro) et ce qu’on en retient, puis comment mieux s’y prendre avec OpenCode, enfin la boîte à outils. La commande affichée en bas est celle qui a servi de garde-fou pendant les deux chantiers.}
 
 % =====================================================================  2 · boucle
 {\light\kicker{00}{Introduction}
@@ -251,17 +256,45 @@
 \note{Histoire vraie, juillet 2025. Jason Lemkin, fondateur de SaaStr, mène un test public de 12 jours de «\,vibe coding\,» avec l’agent de Replit. Le soir du 17 juillet, il impose un gel du code. Le lendemain, l’agent exécute des commandes destructrices sur la base de production. Interrogé, il admet avoir «\,paniqué\,», s’attribue 95/100 sur une «\,échelle de catastrophe\,», et affirme qu’aucun retour arrière n’est possible, ce qui était faux. Il avait aussi généré des milliers de faux utilisateurs. Le PDG de Replit s’est excusé~; la plateforme sépare depuis les bases de dev et de prod et a ajouté un mode planification seule. Le lien avec notre REX~: le prompt ne protège de rien, ce sont les permissions qui protègent. Et le résumé de l’agent n’est pas une preuve. Anecdote de réserve pour les questions~: Project Vend chez Anthropic (2025), où un Claude gérant une boutique a stocké des cubes de tungstène vendus à perte et prétendu livrer en personne en blazer bleu.}
 
 % =====================================================================  4 · acte 1
-\actslide{01}{ACTE 1}{Le retour\\d’expérience}{La documentation Sphinx de LP-ShiftPlanner, refaite avec des agents spécialisés.}
-  {\dchip{Le terrain}\,\dchip{Le bilan}\,\dchip{Le livrable}\,\dchip{La méthode}\\\dchip{Le prompting}\,\dchip{Les leçons}}
-\note{Premier acte~: ce qu’on a réellement fait sur la doc de LP-ShiftPlanner, avec quels agents, et ce que ça a coûté.}
+\actslide{01}{ACTE 1}{Le retour\\d’expérience}{Deux chantiers de documentation Sphinx~: refondre celle de LP-ShiftPlanner, puis bâtir celle de LP-EasyDriver-LD de zéro.}
+  {\dchip{Deux chantiers}\,\dchip{Chantier 1 · LP-ShiftPlanner}\\\dchip{Chantier 2 · LP-EasyDriver-LD}\,\dchip{Les leçons}}
+\note{Premier acte~: ce qu’on a réellement fait, avec quels agents et pour quel coût. D’abord la refonte de la doc de LP-ShiftPlanner, puis, avec cette expérience, une documentation complète de LP-EasyDriver-LD construite de zéro.}
+
+% =====================================================================  5 · deux chantiers
+{\light\kicker{01}{Deux chantiers}
+\begin{frame}{Deux chantiers, deux points de départ}
+  \vspace{0.05cm}
+  \def\h{4.4cm}
+  \noindent\cardbox{6.8cm}{\h}{%
+    \ctag{Chantier 1 · Refonte}
+    \ctitle{LP-ShiftPlanner v2}
+    \vspace{3pt}{\headfont\fontsize{21}{22}\selectfont\color{blue}123\,432}\par\vspace{2pt}
+    {\fontsize{6.2}{8}\selectfont\color{body}lignes de C++ (.cpp et .h)}\par\vspace{4pt}
+    {\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
+    \factline{Point de départ}{Une doc .dox dérivée du code}
+    \factline{Méthode}{Deux passes, trois agents spécialisés}
+    \factline{Coût}{2 jours, ≈\,20\,€ de tokens}}\hfill
+  \cardbox[dcard]{6.8cm}{\h}{%
+    \ctag[lime]{Chantier 2 · De zéro}\color{white}%
+    \ctitle[white]{LP-EasyDriver-LD}
+    \vspace{3pt}{\headfont\fontsize{21}{22}\selectfont\color{lime}69\,954}\par\vspace{2pt}
+    {\fontsize{6.2}{8}\selectfont\color{dmute}lignes de C++ (.cpp et .h)}\par\vspace{4pt}
+    {\color{navyline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
+    \factline[peri]{Point de départ}{Aucune doc, un dépôt C++ dense}
+    \factline[peri]{Méthode}{4 à 5 passes, dont un audit}
+    \factline[peri]{Coût}{≈\,15\,€ de tokens, audit compris}}
+  \par\vspace{0.4cm}
+  \pull{Avec l’expérience du premier, le second part de zéro et livre une suite complète pour ≈\,15\,€.}
+\end{frame}}
+\note{Deux terrains comparables~: deux moteurs d’optimisation C++ du même socle. Le premier, LP-ShiftPlanner (123\,432 lignes de .cpp et .h), avait une documentation qui avait dérivé du code~: il s’agissait de la refondre. Le second, LP-EasyDriver-LD (69\,954 lignes), n’avait rien~: on est parti de zéro, avec la méthode affinée sur le premier. Les deux coûts sont du même ordre (≈\,20\,€ et ≈\,15\,€), alors que le second livrable est une suite complète.}
 
 % =====================================================================  5 · terrain
-{\light\kicker{01}{Le terrain}
+{\light\kicker{01}{Chantier 1 · Le terrain}
 \begin{frame}{LP-ShiftPlanner v2~: un terrain exigeant}
   \lede{Un moteur d’optimisation qui construit les plannings de personnel~: journées de service, repos, règles réglementaires et critères métier.}
   \vspace{0.2cm}
-  \noindent\tikz[baseline=(p.base)]\node[fill=blue,text=white,inner xsep=3pt,inner ysep=2pt,font=\labelfont\fontsize{5.4}{6}\selectfont\bfseries](p){v9.3.6};\,
-  \chip{C++11 · CMake}\,\chip{Boost (graphes)}\,\chip{lptpframework}\,\chip{sequenceFramework}\,\chip{lptoolkit}
+  \noindent\tikz[baseline=(p.base)]\node[fill=blue,text=white,inner xsep=3pt,inner ysep=2pt,font=\labelfont\fontsize{5.4}{6}\selectfont\bfseries](p){123 432 lignes C++};\,
+  \chip{v9.3.6}\,\chip{C++11 · CMake}\,\chip{Boost (graphes)}\,\chip{lptpframework}\,\chip{sequenceFramework}\,\chip{lptoolkit}
   \par\vspace{0.38cm}
   {\fontsize{8}{10}\selectfont\bfseries Trois modes d’utilisation}\par\vspace{0.15cm}
   \def\w{3.95cm}\def\h{1.5cm}
@@ -274,7 +307,7 @@
 \note{Le contexte projet en une slide. L’intérêt pour l’IA~: un framework C++ lourd avec des dépendances internes, trois publics différents (intégrateurs, utilisateurs .dbg, utilisateurs JSON) et une documentation qui avait dérivé du code.}
 
 % =====================================================================  6 · bilan
-{\light\kicker{01}{Le bilan}
+{\light\kicker{01}{Chantier 1 · Le bilan}
 \begin{frame}{Le bilan en chiffres}
   \lede{Point de départ~: écarts entre le code et la doc, clés obsolètes, un index.rst qui mélangeait tout.}
   \vspace{0.3cm}
@@ -286,10 +319,10 @@
   \par\vspace{0.7cm}
   \pull{Un coût honnête, comparé aux jours-ingénieur qu’aurait demandés la même refonte à la main.}
 \end{frame}}
-\note{Deux jours, dont une partie à prendre l’outil en main, et environ 20 euros de tokens. Le prochain chantier ira plus vite, puisque la configuration et les agents sont déjà prêts.}
+\note{Deux jours, dont une partie à prendre l’outil en main, et environ 20 euros de tokens. Le second chantier l’a confirmé~: avec la méthode rodée, une documentation complète de LP-EasyDriver-LD, partie de zéro, a coûté environ 15 euros.}
 
 % =====================================================================  7 · livrable
-{\light\kicker{01}{Le livrable}
+{\light\kicker{01}{Chantier 1 · Le livrable}
 \begin{frame}{Une doc pensée pour l’utilisateur}
   \noindent{\fontsize{7.2}{9}\selectfont\color{body}Trois entrées, toutes livrées~:}\hspace{6pt}%
   \chip{\tickmark\;Utilisation .dbg}\,\chip{\tickmark\;Utilisation JSON}\,\chip{\tickmark\;Intégration C/C++}
@@ -305,7 +338,7 @@
 \note{L’objectif de la refonte~: qu’un utilisateur s’y retrouve parmi les différentes méthodes sans connaître le code. Chaque méthode a sa fiche avec schéma, description, appel avec exemple et paramètres expliqués. S’y ajoutent un guide d’utilisation, un guide de lecture des sorties et des pages sur les erreurs et exceptions possibles, avec leur résolution.}
 
 % =====================================================================  8 · agents
-{\light\kicker{01}{La méthode}
+{\light\kicker{01}{Chantier 1 · La méthode}
 \begin{frame}{Un agent par rôle, des droits minimaux}
   \vspace{0.1cm}
   \noindent\tikz\node[card]{%
@@ -328,7 +361,7 @@
 \note{Le cœur de la méthode~: séparer les responsabilités. Un agent générique finit par halluciner ou oublier des consignes. L’auditeur ne peut rien modifier, donc il se concentre sur l’analyse.}
 
 % =====================================================================  9 · workflow
-{\light\kicker{01}{La méthode}
+{\light\kicker{01}{Chantier 1 · La méthode}
 \begin{frame}{Le workflow en deux passes}
   \vspace{0.12cm}
   \def\w{2.3cm}\def\h{2.6cm}
@@ -349,7 +382,7 @@
 \note{Rien n’est écrit tant que le plan n’est pas validé. Le build Sphinx avec -W sert de critère objectif~: l’agent doit réparer ses liens cassés avant de rendre son rapport.}
 
 % ===================================================================== 10 · prompting
-{\light\kicker{01}{Le prompting}
+{\light\kicker{01}{Chantier 1 · Le prompting}
 \begin{frame}{Cinq astuces de prompting qui ont marché}
   \vspace{0.05cm}
   {\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
@@ -362,8 +395,8 @@
 \note{Le point commun de ces astuces~: être directif. Le modèle ne devine pas nos conventions, il faut les écrire, et lui donner un moyen de vérifier son propre travail.}
 
 % ===================================================================== 11 · leçons
-{\light\kicker{01}{Les leçons}
-\begin{frame}{Ce qu’on en retient}
+{\light\kicker{01}{Chantier 1 · Les leçons}
+\begin{frame}{Ce que le premier chantier nous a appris}
   \vspace{0.1cm}
   \noindent\cardbox{6.95cm}{4.15cm}{%
     \ctag{Constats}\vspace{3pt}
@@ -380,7 +413,140 @@
     \li[lime]{Les règles stables dans AGENTS.md, pas dans chaque prompt.}
     \li[lime]{Un gros modèle pour le plan (Mistral Large 4 ou GLM 5.3), GLM 5.3 Flash pour l’exécution.}}}
 \end{frame}}
-\note{Nuance sur la consommation~: la croissance n’est pas vraiment exponentielle. Chaque tour renvoie tout l’historique, donc le coût cumulé croît à peu près au carré de la longueur de la session. La conclusion reste la même~: des sessions courtes. Sur GLM~: juger sur le diff et le build, pas sur son résumé final.}
+\note{Nuance sur la consommation~: la croissance n’est pas vraiment exponentielle. Chaque tour renvoie tout l’historique, donc le coût cumulé croît à peu près au carré de la longueur de la session. La conclusion reste la même~: des sessions courtes. Sur GLM~: juger sur le diff et le build, pas sur son résumé final. Ces leçons ont servi de point de départ au second chantier, qu’on présente maintenant.}
+
+% ===================================================================== chantier 2 · terrain + bilan
+{\light\kicker{01}{Chantier 2 · Le terrain}
+\begin{frame}{LP-EasyDriver-LD~: documenter de zéro}
+  \lede{L’habillage automatique longue distance (train, autocar)~: à partir du réseau et du roulement matériel, le moteur construit les Journées de Service (JS) et les Tours de Service (TS) des agents.}
+  \vspace{0.2cm}
+  \noindent\tikz[baseline=(p.base)]\node[fill=blue,text=white,inner xsep=3pt,inner ysep=2pt,font=\labelfont\fontsize{5.4}{6}\selectfont\bfseries](p){69 954 lignes C++};\,
+  \chip{API C++ · fichiers .dbg}\,\chip{RAR · RHR · TTE}\,\chip{3 modes de fonctionnement}\,\chip{14 CSV + SVG}
+  \par\vspace{0.4cm}
+  \def\w{3.3cm}\def\h{2.0cm}
+  \noindent\kpi{25 pages}{structurées, ≈\,10\,500 lignes de sources Sphinx}\hfill
+  \kpi{230}{méthodes d’API documentées, sur deux niveaux}\hfill
+  \kpi{0}{erreur, 0 warning au build complet~; script de contrôle au vert (PASS)}\hfill
+  \kpi{{\fontspec{IBMPlexSans-Bold.otf}≈}\,15\,€}{de tokens pour toute la suite, audit compris}
+  \par\vspace{0.45cm}
+  \pull{Deux publics à servir~: les utilisateurs métier, non initiés à l’optimisation ni au C++, et les intégrateurs.}
+\end{frame}}
+\note{LP-EasyDriver-LD (Longue Distance) est un module de la suite LP-EasyDriver d’EURODECISION, construit sur le socle LP-Taskplanner Framework. Il couvre les tâches demandées en respectant les règles sociales et réglementaires (amplitudes, temps de travail effectif, conduite, pauses, repos à résidence et découchés hors résidence), les compétences et les quotas. Trois modes~: optimisation directe sur une période, optimisation cyclique par fenêtres, et vérification de services déjà affectés. Le dépôt de départ~: 69\,954 lignes de C++, une API de plus de deux cents méthodes, aucune documentation. À l’arrivée, 25 pages, 230 méthodes documentées, un build Sphinx à 0 erreur et 0 warning, pour environ 15 euros de tokens.}
+
+% ===================================================================== chantier 2 · lecteurs
+{\light\kicker{01}{Chantier 2 · Le livrable}
+\begin{frame}{Une doc organisée pour ses lecteurs}
+  \vspace{0.05cm}
+  \def\w{4.45cm}\def\h{2.45cm}
+  \noindent\cardbox{\w}{\h}{\ctag{Comprendre}\ctitle{Un parcours narratif}\cbody{Vue d’ensemble métier, démarrage rapide, cas complet de bout en bout, et un chapitre qui vulgarise le moteur, sans jargon non expliqué.}}\hfill
+  \cardbox[bcard]{\w}{\h}{\ctag{Paramétrer}\ctitle{Un référentiel à deux niveaux}\cbody{230 méthodes~: l’usage courant en haut de page, classé par sous-groupes métier~; le paramétrage avancé et l’API bas niveau en fin de page.}}\hfill
+  \cardbox{\w}{\h}{\ctag{Exploiter}\ctitle{Des guides d’exploitation}\cbody{Lire les 14 CSV et le SVG produits, diagnostiquer les erreurs et les violations de règles.}}
+  \par\vspace{0.3cm}
+  \def\w{6.85cm}\def\h{1.4cm}
+  \noindent\cardbox[dcard]{\w}{\h}{\ctag[lime]{Zéro cuisine interne}\cbody[dmute]{Aucun chemin local, aucune trace des tests internes, des exemples valides tirés des signatures réelles, chaque sigle défini à sa première apparition.}}\hfill
+  \cardbox[dcard]{\w}{\h}{\ctag[lime]{Une source de vérité}\cbody[dmute]{Chaque tableau ou avertissement important a sa page de référence~; ailleurs, 2 à 3 phrases autonomes et un lien.}}
+\end{frame}}
+\note{Une bonne documentation se juge à la vitesse à laquelle le lecteur trouve sa réponse. On a séparé trois espaces~: comprendre, paramétrer, exploiter. Dans le référentiel, chaque page a deux parties~: en haut ce qu’on écrit au quotidien, classé par besoin métier, en bas la plomberie et les méthodes historiques, reliées au chapitre qui explique leur rôle. La page d’accueil du référentiel propose un index «\,Que voulez-vous faire~?\,», et on ne sépare jamais deux méthodes symétriques (Before / After, Min / Max) entre les deux parties. Quand aucun exemple n’existait pour une fonction, l’agent en a généré un à partir de la signature exacte dans le code.}
+
+% ===================================================================== chantier 2 · piloter
+{\light\kicker{01}{Chantier 2 · La méthode}
+\begin{frame}{Piloter~: un architecte, un agent, un plan}
+  \vspace{0.05cm}
+  \def\w{6.85cm}\def\h{1.45cm}
+  \noindent\cardbox{\w}{\h}{\ctag{L’architecte · réflexion}\ctitle{Garde la vision d’ensemble}\cbody{Conçoit le plan, critique les résultats, rédige des prompts précis et repère les angles morts.}}\hfill
+  \cardbox{\w}{\h}{\ctag{L’agent de dépôt · exécution}\ctitle{Reste sur des tâches courtes}\cbody{Lit le code, édite les fichiers, lance les builds~: du factuel, vérifiable sur le dépôt.}}
+  \par\vspace{0.35cm}
+  {\fontsize{8}{10}\selectfont\bfseries Pour chaque tâche structurante}\par\vspace{0.15cm}
+  \def\w{4.2cm}\def\h{1.55cm}
+  \noindent\cardbox{\w}{\h}{\ctag{1 · Plan, lecture seule}\cbody{L’agent explore, chiffre l’existant et propose une structure. Rien n’est modifié.}}%
+  \hfill\raisebox{-0.78cm}{\arr}\hfill
+  \cardbox[dcard]{\w}{\h}{\ctag[lime]{2 · Revue humaine}\cbody[dmute]{On valide le découpage, on corrige les contresens, on ajuste les priorités.}}%
+  \hfill\raisebox{-0.78cm}{\arr}\hfill
+  \cardbox{\w}{\h}{\ctag{3 · Build, même session}\cbody{L’agent exploite son diagnostic déjà en mémoire~: pas de seconde exploration.}}
+  \par\vspace{0.4cm}
+  \pull{Laisser l’agent vérifier les faits~: encadrer la taille des sorties, pas le nombre de commandes.}
+\end{frame}}
+\note{Le second chantier a séparé deux rôles~: un interlocuteur de réflexion, l’architecte, qui conçoit le plan et formule les prompts, et l’agent connecté au dépôt, qui lit, édite et compile. Le passage Plan puis Build dans la même session est déjà celui du premier chantier, en plus systématique. Une erreur à éviter~: limiter arbitrairement le nombre de commandes de l’agent, ce qui le pousse à deviner au lieu de vérifier. Mieux vaut le laisser lancer des scripts d’inventaire courts (un python3 -c qui croise les méthodes de l’API avec leur usage dans les exemples) et ne lire un fichier en entier que pour comprendre un algorithme à vulgariser.}
+
+% ===================================================================== chantier 2 · passes
+{\light\kicker{01}{Chantier 2 · La méthode}
+\begin{frame}{Cinq passes plutôt qu’un premier jet}
+  \vspace{0.05cm}
+  \def\w{2.3cm}\def\h{2.6cm}
+  \noindent\wstep{\ctag{Passe 1}}{\ctitle{Fondations factuelles}}{\cbody{Cartographier le code, structure initiale, fiches exactes}}%
+  \hfill\raisebox{-1.3cm}{\arr}\hfill
+  \wstep{\ctag{Passe 2}}{\ctitle{Réorganisation}}{\cbody{Usage courant ou avancé, index par sous-groupes}}%
+  \hfill\raisebox{-1.3cm}{\arr}\hfill
+  \wstep{\ctag{Passe 3}}{\ctitle{Profondeur conceptuelle}}{\cbody{Vulgariser le moteur~: le pourquoi et le comment}}%
+  \hfill\raisebox{-1.3cm}{\arr}\hfill
+  \wstep[dcard]{\ctag[lime]{Passe 4}}{\ctitle[white]{Audit en lecture seule}}{\cbody[dmute]{Un rapport, aucune modification}}%
+  \hfill\raisebox{-1.3cm}{\arr}\hfill
+  \wstep{\ctag{Passe 5}}{\ctitle{Exécution par lots}}{\cbody{Session neuve, corrections tirées du rapport}}
+  \par\vspace{0.35cm}
+  \noindent{\labelfont\fontsize{5.4}{6}\selectfont\color{mute}À LA FIN DE CHAQUE PASSE}\hspace{6pt}%
+  \chip{build -a -E → 0 erreur · 0 warning}\,\chip{linter maison → PASS}\,\chip{relecture dans le navigateur}
+  \par\vspace{0.4cm}
+  \pull{Le premier jet n’est jamais le livrable~: les parties clés ont été reprises 4 à 5 fois.}
+\end{frame}}
+\note{Chaque passe élève la barre~: d’un contenu brut mais exact à une documentation pensée pour ses lecteurs. Le contrôle se fait à la fin de chaque grande passe, pas après chaque micro-édition~: build Sphinx complet depuis zéro (-a -E) avec 0 erreur et 0 warning comme seul critère, puis un petit linter Python maison qui verrouille les conventions (hiérarchie des soulignements de titres, format des signatures, aucun TODO ni chemin personnel ni dossier de test interne, intégrité des ancres). Règle d’or en réorganisant~: conserver toutes les ancres existantes, suivies d’une ligne vide, pour ne casser aucun lien. Enfin, une minute dans le navigateur (Ctrl + F5) repère ce qu’aucun script ne voit~: un bloc trop dense, un titre orphelin, une transition abrupte.}
+
+% ===================================================================== chantier 2 · audit
+{\light\kicker{01}{Chantier 2 · L’audit}
+\begin{frame}{L’audit en lecture seule, le levier le plus rentable}
+  \vspace{0.05cm}
+  \noindent\begin{minipage}[t]{8.2cm}\vspace*{0pt}
+    \begin{tikzpicture}[baseline=(w.north)]
+      \node[fill=codebg,draw=navyline,line width=0.4pt,rounded corners=3pt,inner sep=0pt,anchor=north west] (w) at (0,0) {%
+        \begin{minipage}[t][4.62cm][t]{8.2cm}
+          \vspace{5pt}\hspace{7pt}%
+          \tikz[baseline=-0.5ex]{\fill[red!70!orange](0,0)circle(1.4pt);\fill[yellow!80!orange](0.16,0)circle(1.4pt);\fill[green!60!teal](0.32,0)circle(1.4pt);}%
+          \hspace{6pt}{\ttfamily\fontsize{5.6}{6}\selectfont\color{dmute}prompt · audit qualité}\par
+          \vspace{3pt}{\color{navyline}\rule{\linewidth}{0.4pt}}\par\vspace{4pt}
+          \leftskip=9pt
+          \ttfamily\fontsize{5.7}{7.0}\selectfont\color{white}
+          Réalise un audit complet de \kw{docs/src/} et écris\par
+          uniquement le rapport dans \kw{audit\_documentation.md}.\par
+          {\color{lime}Ne modifie aucun autre fichier. Zéro sous-agent.}\par
+          \vspace{4pt}{\color{dmute}Méthode}\par
+          1. Inventorie les fichiers, lance un script d’analyse\par
+          \hspace*{1.2em}(doublons, terminologie, traces internes, liens).\par
+          2. Lis les guides dans la peau d’un non-spécialiste.\par
+          \vspace{4pt}{\color{dmute}Rapport}\par
+          1. Synthèse et top 5 des problèmes\par
+          2. Carte des répétitions → source de vérité\par
+          3. Passages confus~: fichier, extrait, reformulation\par
+          4. Anomalies Critique / Majeur / Mineur\par
+          5. Plan d’action en lots priorisés\par
+        \end{minipage}};
+    \end{tikzpicture}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{5.3cm}\vspace*{0pt}
+    {\fontsize{6.8}{8.8}\selectfont\color{body}%
+    \li{\textbf{\color{ink}Il sépare l’œil critique de l’écriture}~: l’agent qui relit n’a pas le droit de corriger.}
+    \li{\textbf{\color{ink}Il voit ce que le build ne voit pas}~: contradictions entre chapitres, coquilles, terminologie, doublons.}
+    \li{\textbf{\color{ink}Il devient la feuille de route}~: la passe 5 applique les lots en session neuve, sans ré-analyser le dépôt.}}
+    \vspace{4pt}
+    \noindent\chip[crit]{Critique}\,\chip[major]{Majeur}\,\chip[mute]{Mineur}
+  \end{minipage}
+  \par\vspace{0.2cm}
+  \pull{Quelques dizaines de centimes de tokens pour une feuille de route complète.}
+\end{frame}}
+\note{L’audit est une session dédiée avec interdiction absolue de modifier la documentation~: l’agent ne produit qu’un rapport Markdown. Il recense les contradictions factuelles entre chapitres par gravité, les phrases tronquées et incohérences de terminologie, la carte des doublons avec la source de vérité recommandée, les passages trop denses pour un non-spécialiste, et un plan d’action en lots avec les emplacements exacts. La passe suivante, en session neuve, applique les lots dans l’ordre~: d’abord la fiabilité factuelle et la terminologie, puis la déduplication et la lisibilité. Consignes de cette passe~: localiser par titre ou grep plutôt que par vieux numéros de ligne, revérifier dans le code tout point douteux, conserver les ancres, et finir par le linter puis le build à 0 warning.}
+
+% ===================================================================== chantier 2 · budget
+{\light\kicker{01}{Chantier 2 · Le budget}
+\begin{frame}{Environ 15\,€~: le budget vient de la méthode}
+  \vspace{0.05cm}
+  {\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
+  \tip{01}{Purger le contexte}{\code{/new} entre les phases~: on ne repaie pas des milliers de lignes de diff.}
+  \tip{02}{Garder Plan → Build}{Même session du plan au build~: on ne paie pas deux fois l’exploration.}
+  \tip{03}{Doser la réflexion}{Mode rapide pour le mécanique, \code{medium} pour vulgariser un moteur.}
+  \tip{04}{Un seul agent}{Séquentiel et ciblé, sans sous-agents~: plus prévisible et moins cher.}
+  \tip{05}{Retouches au terminal}{Un \code{grep}, un \code{git status}, trois points-virgules~: 5 secondes, 0\,€.}
+  \vspace{0.1cm}
+  \pull{On économise en gérant le contexte, pas en bridant les vérifications de l’agent.}
+\end{frame}}
+\note{Les 15 euros ne viennent pas d’une restriction aveugle. Les deux habitudes qui pèsent le plus~: repartir d’une session vierge après chaque grosse phase d’édition, et au contraire garder la même session entre le plan et son exécution. Le reste relève du bon sens~: ne pas payer un niveau de réflexion élevé pour corriger l’orthographe, ne pas multiplier les sous-agents sur une tâche bien cadrée, et faire soi-même dans le terminal ce qui prend cinq secondes. On retrouvera les outils qui vont dans le même sens à l’acte 3.}
 
 % ===================================================================== 12 · acte 2
 \actslide{02}{ACTE 2}{Mieux configurer\\OpenCode}{Des agents déclarés dans le dépôt, la bonne température et le bon modèle à chaque étape.}
@@ -556,12 +722,13 @@
 % ===================================================================== 21 · checklist
 {\limeslide\kicker{04}{À retenir}
 \begin{frame}{La checklist}
-  \vspace{0.2cm}
+  \vspace{0.05cm}
   \noindent\begin{minipage}[t]{6.65cm}
     \ck{Un plan écrit avant de lancer}
     \ck{Le bon modèle pour la bonne tâche}
     \ck{Un agent par rôle, des droits minimaux}
     \ck{La bonne température pour la tâche}
+    \ck{Plusieurs passes sur les parties clés}
     {\color{ink!25}\rule{\linewidth}{0.4pt}}
   \end{minipage}\hfill
   \begin{minipage}[t]{6.65cm}
@@ -569,9 +736,10 @@
     \ck{Dire ce qu’il ne doit pas toucher}
     \ck{Handoff plutôt que sessions fleuves}
     \ck{Un commit par étape}
+    \ck{Un audit en lecture seule avant de corriger}
     {\color{ink!25}\rule{\linewidth}{0.4pt}}
   \end{minipage}
 \end{frame}}
-\note{La slide à photographier. Huit réflexes, tous issus du chantier.}
+\note{La slide à photographier. Dix réflexes, tous issus des deux chantiers.}
 
 \end{document}
