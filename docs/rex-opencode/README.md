@@ -1,6 +1,6 @@
 # L’IA agentique au quotidien — REX OpenCode & bonnes pratiques (Beamer)
 
-`main.pdf` is the 28-slide deck (16:9); `notes.pdf` is the same deck with the speaker notes
+`main.pdf` is the 25-slide deck (16:9); `notes.pdf` is the same deck with the speaker notes
 on a second screen (right half of each page, for a presenter tool such as `pdfpc` or dual-screen PDF viewers).
 
 Build (TeX Live with beamer, pgfplots, TikZ and the `plex` font package; XeLaTeX):
@@ -18,3 +18,5 @@ latexmk -xelatex notes.tex
   `ncard` / `hcard` (on dark), `bcard` (blue outline); `\ctag`, `\ctitle`, `\cbody`, `\pull` (quote with a rule),
   `\chip`, `\code`.
 - Speaker notes are the `\note{…}` after each frame.
+- `img/doc-structure.png` (optional): a screenshot of the real documentation; when present it replaces the
+  schematic mock on the structure slide (`\docmock`).

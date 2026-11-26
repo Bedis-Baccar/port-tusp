@@ -167,6 +167,59 @@
 \definecolor{major}{HTML}{B45309}
 \def\kw#1{{\color{peri}#1}}\def\cmt#1{\hfill{\color{dmute!70}\# #1}\hspace*{9pt}}
 
+% numbered principle (structure slide)
+\newcommand{\principle}[3]{\noindent\begin{minipage}[t]{0.55cm}\leavevmode\code{\textbf{#1}}\end{minipage}%
+  \begin{minipage}[t]{\dimexpr\linewidth-0.55cm}\raggedright\leavevmode{\fontsize{7.4}{9}\selectfont\bfseries #2\par}\vspace{1.5pt}{\fontsize{6.4}{8.2}\selectfont\color{body}#3\par}\end{minipage}\par\vspace{10pt}}
+% schematic of the documentation: Sphinx-style sidebar + a method page template
+\newcommand{\mockside}[3]{\node[anchor=west,inner sep=0,font=\labelfont\fontsize{4.6}{5}\selectfont\bfseries,text=lime] at (0.22,#1) {#2};
+  \node[anchor=west,inner sep=0,font=\fontsize{5.6}{6}\selectfont\bfseries,text=white] at (0.62,#1) {#3};}
+\newcommand{\mocksub}[2]{\node[anchor=west,inner sep=0,font=\fontsize{5}{6}\selectfont,text=dmute] at (0.62,#1) {#2};}
+\newcommand{\mockbar}[4][cline]{\fill[#1,rounded corners=0.6pt] (#2,#3) rectangle ++(#4,-0.07);}
+\newcommand{\docmock}{%
+  \begin{tikzpicture}[x=1cm,y=1cm]
+    \fill[white,draw=cline,line width=0.4pt,rounded corners=3pt,drop shadow={opacity=0.06,shadow xshift=0pt,shadow yshift=-0.7pt}] (0,0) rectangle (8.6,-4.9);
+    \fill[cline!70,rounded corners=3pt] (0,0) rectangle (8.6,-0.38);
+    \fill[cline!70] (0,-0.2) rectangle (8.6,-0.38);
+    \fill[red!70!orange] (0.2,-0.19) circle (1.4pt); \fill[yellow!80!orange] (0.36,-0.19) circle (1.4pt); \fill[green!60!teal] (0.52,-0.19) circle (1.4pt);
+    \node[font=\labelfont\fontsize{4.8}{5}\selectfont,text=mute] at (4.3,-0.19) {DOCUMENTATION UTILISATEUR · SPHINX};
+    % sidebar
+    \fill[navy] (0,-0.38) rectangle (2.95,-4.9);
+    \fill[navyline] (0,-2.48) rectangle (2.95,-3.33);
+    \fill[lime] (0,-2.48) rectangle (0.05,-3.33);
+    \mockside{-0.65}{01}{Comprendre}
+    \mocksub{-0.88}{Vue d’ensemble métier}
+    \mocksub{-1.08}{Le moteur, expliqué}
+    \mockside{-1.38}{02}{Démarrer}
+    \mocksub{-1.61}{Prise en main}
+    \mocksub{-1.81}{Cas complet de bout en bout}
+    \mockside{-2.11}{03}{Utiliser}
+    \mocksub{-2.34}{.dbg · JSON · C/C++}
+    \mockside{-2.64}{04}{Référence}
+    \mocksub{-2.98}{Usage courant}
+    \mocksub{-3.20}{Paramétrage avancé}
+    \mockside{-3.62}{05}{Exploiter les sorties}
+    \mocksub{-3.85}{CSV, SVG}
+    \mockside{-4.18}{06}{Dépanner}
+    \mocksub{-4.41}{Erreurs et diagnostics}
+    % page: method template
+    \node[anchor=west,inner sep=0,font=\headfont\fontsize{8.5}{9}\selectfont,text=ink] at (3.25,-0.7) {Fiche type~: une méthode};
+    \node[anchor=west,inner sep=0,font=\labelfont\fontsize{4.4}{5}\selectfont,text=blue] at (3.25,-1.02) {SCHÉMA};
+    \fill[paper] (3.25,-1.14) rectangle (5.35,-2.12);
+    \draw[blue!60,line width=0.5pt,rounded corners=1pt] (3.45,-1.4) rectangle (4.05,-1.75) (4.55,-1.4) rectangle (5.15,-1.75);
+    \draw[blue!60,line width=0.5pt,-{Latex[length=2pt,width=2pt]}] (4.05,-1.575) -- (4.55,-1.575);
+    \fill[blue!25] (3.45,-1.9) rectangle (5.15,-1.96);
+    \node[anchor=west,inner sep=0,font=\labelfont\fontsize{4.4}{5}\selectfont,text=blue] at (5.6,-1.02) {DESCRIPTION};
+    \mockbar{5.6}{-1.18}{2.7} \mockbar{5.6}{-1.36}{2.5} \mockbar{5.6}{-1.54}{2.65} \mockbar{5.6}{-1.72}{1.9} \mockbar{5.6}{-1.90}{2.4}
+    \node[anchor=west,inner sep=0,font=\labelfont\fontsize{4.4}{5}\selectfont,text=blue] at (3.25,-2.34) {APPEL AVEC EXEMPLE};
+    \fill[codebg,rounded corners=1.5pt] (3.25,-2.46) rectangle (8.3,-3.18);
+    \mockbar[peri]{3.4}{-2.6}{1.2} \mockbar[white!80!navy]{4.7}{-2.6}{1.6}
+    \mockbar[lime]{3.55}{-2.78}{0.9} \mockbar[white!80!navy]{4.55}{-2.78}{2.1}
+    \mockbar[lime]{3.55}{-2.96}{0.7} \mockbar[white!80!navy]{4.35}{-2.96}{1.4}
+    \node[anchor=west,inner sep=0,font=\labelfont\fontsize{4.4}{5}\selectfont,text=blue] at (3.25,-3.42) {PARAMÈTRES};
+    \foreach \y in {-3.55,-3.85,-4.15,-4.45} \draw[cline,line width=0.4pt] (3.25,\y) -- (8.3,\y);
+    \foreach \y/\a/\b in {-3.7/0.9/2.6,-4.0/1.1/2.2,-4.3/0.8/2.8} { \mockbar[blue!45]{3.3}{\y+0.035}{\a} \mockbar{4.75}{\y+0.035}{\b} }
+  \end{tikzpicture}}
+
 % speaker notes: \note{…} after each frame’s body
 \setbeamertemplate{note page}{\vspace{0.6cm}\hspace{0.7cm}\begin{minipage}{14.2cm}\raggedright\fontsize{9}{12.5}\selectfont\insertnote\end{minipage}}
 
@@ -257,8 +310,8 @@
 
 % =====================================================================  4 · acte 1
 \actslide{01}{ACTE 1}{Le retour\\d’expérience}{Deux chantiers de documentation Sphinx~: refondre celle de LP-ShiftPlanner, puis bâtir celle de LP-EasyDriver-LD de zéro.}
-  {\dchip{Deux chantiers}\,\dchip{Chantier 1 · LP-ShiftPlanner}\\\dchip{Chantier 2 · LP-EasyDriver-LD}\,\dchip{Les leçons}}
-\note{Premier acte~: ce qu’on a réellement fait, avec quels agents et pour quel coût. D’abord la refonte de la doc de LP-ShiftPlanner, puis, avec cette expérience, une documentation complète de LP-EasyDriver-LD construite de zéro.}
+  {\dchip{Deux chantiers}\,\dchip{La structure}\,\dchip{La méthode}\\\dchip{L’audit}\,\dchip{Le prompting}\,\dchip{Le budget}\,\dchip{Les leçons}}
+\note{Premier acte~: ce qu’on a réellement fait, avec quels agents et pour quel coût. On présente les deux chantiers, LP-ShiftPlanner puis LP-EasyDriver-LD, puis la méthode commune qu’on en a tirée~: la structure d’abord, des rôles clairs, des passes successives, un audit, un budget maîtrisé.}
 
 % =====================================================================  5 · deux chantiers
 {\light\kicker{01}{Deux chantiers}
@@ -321,100 +374,6 @@
 \end{frame}}
 \note{Deux jours, dont une partie à prendre l’outil en main, et environ 20 euros de tokens. Le second chantier l’a confirmé~: avec la méthode rodée, une documentation complète de LP-EasyDriver-LD, partie de zéro, a coûté environ 15 euros.}
 
-% =====================================================================  7 · livrable
-{\light\kicker{01}{Chantier 1 · Le livrable}
-\begin{frame}{Une doc pensée pour l’utilisateur}
-  \noindent{\fontsize{7.2}{9}\selectfont\color{body}Trois entrées, toutes livrées~:}\hspace{6pt}%
-  \chip{\tickmark\;Utilisation .dbg}\,\chip{\tickmark\;Utilisation JSON}\,\chip{\tickmark\;Intégration C/C++}
-  \par\vspace{0.35cm}
-  \def\w{2.95cm}\def\h{2.15cm}
-  \noindent\cardbox{\w}{\h}{\ctag{Par méthode}\ctitle{Une fiche complète}\cbody{Schéma, description, appel avec exemple, chaque paramètre expliqué.}}\hfill
-  \cardbox{\w}{\h}{\ctag{Prise en main}\ctitle{Guide d’utilisation}\cbody{Pas à pas, avec des exemples détaillés.}}\hfill
-  \cardbox{\w}{\h}{\ctag{Sorties}\ctitle{Lire les résultats}\cbody{Comprendre les plannings, compteurs et fichiers CSV produits.}}\hfill
-  \cardbox{\w}{\h}{\ctag{Dépannage}\ctitle{Erreurs et exceptions}\cbody{Ce qui peut arriver, pourquoi, et comment le résoudre.}}
-  \par\vspace{0.6cm}
-  \pull{En fond~: valeurs CSV fiabilisées (N/A, ERR) et promesses d’exhaustivité corrigées.}
-\end{frame}}
-\note{L’objectif de la refonte~: qu’un utilisateur s’y retrouve parmi les différentes méthodes sans connaître le code. Chaque méthode a sa fiche avec schéma, description, appel avec exemple et paramètres expliqués. S’y ajoutent un guide d’utilisation, un guide de lecture des sorties et des pages sur les erreurs et exceptions possibles, avec leur résolution.}
-
-% =====================================================================  8 · agents
-{\light\kicker{01}{Chantier 1 · La méthode}
-\begin{frame}{Un agent par rôle, des droits minimaux}
-  \vspace{0.1cm}
-  \noindent\tikz\node[card]{%
-    \fontsize{6.6}{9}\selectfont\renewcommand{\arraystretch}{1.75}\setlength{\tabcolsep}{4pt}%
-    \begin{tabular}{@{\hspace{8pt}}>{\leavevmode\ttfamily\color{blue}\raggedright\arraybackslash}>{\leavevmode\raggedright\arraybackslash}p{2.2cm}>{\leavevmode\raggedright\arraybackslash}p{3.3cm}>{\leavevmode\raggedright\arraybackslash}p{3.0cm}>{\leavevmode\raggedright\arraybackslash}p{3.5cm}@{\hspace{8pt}}}
-      \multicolumn{1}{@{\hspace{8pt}}l}{\labelfont\fontsize{5.2}{6}\selectfont\color{mute}AGENT} &
-      {\labelfont\fontsize{5.2}{6}\selectfont\color{mute}RÔLE} &
-      {\labelfont\fontsize{5.2}{6}\selectfont\color{mute}DROITS} &
-      {\labelfont\fontsize{5.2}{6}\selectfont\color{mute}EXEMPLE}\\
-      \arrayrulecolor{cline}\hline
-      analyse & Audit, plan d’action & \textbf{Lecture seule} & Écarts C++ / .dox, error.json\\ \hline
-      writer & Rédaction des .rst & Lecture, écriture, bash & 13 commandes, doc JSON\\ \hline
-      réorganisateur & Arborescence, toctree, liens cassés & bash (git mv, sphinx-build) & Séparation en trois branches\\
-    \end{tabular}};
-  \par\vspace{0.5cm}
-  \pull{Un agent restreint se trompe moins, et ne peut rien casser hors de son périmètre.}
-  \vspace{0.25cm}
-  {\fontsize{6.4}{8.4}\selectfont\color{body}\textbf{\color{ink}Leçon au passage~:} un agent \texttt{res\_org} dont les règles interdisaient le terminal ne pouvait pas déplacer de fichiers. Les droits doivent coller à la tâche.}
-\end{frame}}
-\note{Le cœur de la méthode~: séparer les responsabilités. Un agent générique finit par halluciner ou oublier des consignes. L’auditeur ne peut rien modifier, donc il se concentre sur l’analyse.}
-
-% =====================================================================  9 · workflow
-{\light\kicker{01}{Chantier 1 · La méthode}
-\begin{frame}{Le workflow en deux passes}
-  \vspace{0.12cm}
-  \def\w{2.3cm}\def\h{2.6cm}
-  \noindent\wstep{\ctag{Passe 1}}{\ctitle{Analyse}}{\cbody{Agent en lecture seule~: fouille, identifie, propose}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep{\ctag{Livrable}}{\ctitle{Plan écrit}}{\cbody{Étapes ou squelette, dossier par dossier}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep[dcard]{\ctag[lime]{Humain}}{\ctitle[white]{Validation}}{\cbody[dmute]{On relit et on ajuste le plan ensemble}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep{\ctag{Passe 2}}{\ctitle{Exécution}}{\cbody{Le writer applique le plan, de façon chirurgicale}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep{\ctag{Contrôle}}{{\ttfamily\fontsize{6.6}{8}\selectfont\bfseries sphinx-build -W}\par\vspace{2pt}}{\cbody{Les warnings deviennent des erreurs bloquantes}}
-  \par\vspace{0.42cm}
-  \pull{La stratégie la plus sûre pour les gros chantiers~: théoriser, valider, puis exécuter.}
-  \vspace{0.2cm}
-  {\fontsize{6.2}{8}\selectfont\color{body}Prochaine étape~: planifier avec un gros modèle (Mistral Large 4 ou GLM 5.3), puis exécuter dès que possible avec GLM 5.3 Flash.}
-\end{frame}}
-\note{Rien n’est écrit tant que le plan n’est pas validé. Le build Sphinx avec -W sert de critère objectif~: l’agent doit réparer ses liens cassés avant de rendre son rapport.}
-
-% ===================================================================== 10 · prompting
-{\light\kicker{01}{Chantier 1 · Le prompting}
-\begin{frame}{Cinq astuces de prompting qui ont marché}
-  \vspace{0.05cm}
-  {\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
-  \tip{01}{Surcharge de périmètre}{\code[ink]{«\,IMPORTANT — ignore X, base-toi uniquement sur Y\,»}~: annule un comportement par défaut et économise du contexte.}
-  \tip{02}{Le code fait foi}{Si la doc contredit le C++ (.cpp, .h), c’est le C++ qui gagne. Rappelé à chaque mission.}
-  \tip{03}{Format explicite}{\code[ink]{«\,Indentation de 3 espaces, soulignements de la bonne longueur\,»}, même si le modèle connaît le RST.}
-  \tip{04}{Lecture seule annoncée}{\code[ink]{«\,RÈGLE STRICTE~: n’apporte AUCUNE modification\,»} en tête de chaque prompt d’audit.}
-  \tip{05}{Auto-validation}{L’agent lance lui-même \code{sphinx-build -W --keep-going} avant de rendre son rapport.}
-\end{frame}}
-\note{Le point commun de ces astuces~: être directif. Le modèle ne devine pas nos conventions, il faut les écrire, et lui donner un moyen de vérifier son propre travail.}
-
-% ===================================================================== 11 · leçons
-{\light\kicker{01}{Chantier 1 · Les leçons}
-\begin{frame}{Ce que le premier chantier nous a appris}
-  \vspace{0.1cm}
-  \noindent\cardbox{6.95cm}{4.15cm}{%
-    \ctag{Constats}\vspace{3pt}
-    {\fontsize{6.8}{8.8}\selectfont\color{body}%
-    \li{\textbf{\color{ink}Découper} en petites tâches et écrire ses idées avant de lancer, sinon mauvaises surprises.}
-    \li{\textbf{\color{ink}Très dépendant du prompt}~: un agent qui dicte quoi toucher devient quasi obligatoire.}
-    \li{\textbf{\color{ink}Gourmand en contexte}~: chaque tour renvoie tout l’historique, le coût cumulé grimpe vite.}
-    \li{\textbf{\color{ink}GLM}~: moins cher et efficace ici, mais son résumé peut enjoliver. Vérifier le diff, pas le récit.}}}\hfill
-  \cardbox[dcard]{6.45cm}{4.15cm}{%
-    \ctag[lime]{À ajouter}\vspace{3pt}
-    {\fontsize{6.8}{8.8}\selectfont\color{white}%
-    \li[lime]{Un critère de réussite que l’agent vérifie lui-même (build, tests).}
-    \li[lime]{Une branche et un commit par étape.}
-    \li[lime]{Les règles stables dans AGENTS.md, pas dans chaque prompt.}
-    \li[lime]{Un gros modèle pour le plan (Mistral Large 4 ou GLM 5.3), GLM 5.3 Flash pour l’exécution.}}}
-\end{frame}}
-\note{Nuance sur la consommation~: la croissance n’est pas vraiment exponentielle. Chaque tour renvoie tout l’historique, donc le coût cumulé croît à peu près au carré de la longueur de la session. La conclusion reste la même~: des sessions courtes. Sur GLM~: juger sur le diff et le build, pas sur son résumé final. Ces leçons ont servi de point de départ au second chantier, qu’on présente maintenant.}
-
 % ===================================================================== chantier 2 · terrain + bilan
 {\light\kicker{01}{Chantier 2 · Le terrain}
 \begin{frame}{LP-EasyDriver-LD~: documenter de zéro}
@@ -433,65 +392,81 @@
 \end{frame}}
 \note{LP-EasyDriver-LD (Longue Distance) est un module de la suite LP-EasyDriver d’EURODECISION, construit sur le socle LP-Taskplanner Framework. Il couvre les tâches demandées en respectant les règles sociales et réglementaires (amplitudes, temps de travail effectif, conduite, pauses, repos à résidence et découchés hors résidence), les compétences et les quotas. Trois modes~: optimisation directe sur une période, optimisation cyclique par fenêtres, et vérification de services déjà affectés. Le dépôt de départ~: 69\,954 lignes de C++, une API de plus de deux cents méthodes, aucune documentation. À l’arrivée, 25 pages, 230 méthodes documentées, un build Sphinx à 0 erreur et 0 warning, pour environ 15 euros de tokens.}
 
-% ===================================================================== chantier 2 · lecteurs
-{\light\kicker{01}{Chantier 2 · Le livrable}
-\begin{frame}{Une doc organisée pour ses lecteurs}
+% ===================================================================== structure (merges the two "livrable" slides)
+{\light\kicker{01}{La structure}
+\begin{frame}{D’abord, définir soi-même la structure}
   \vspace{0.05cm}
-  \def\w{4.45cm}\def\h{2.45cm}
-  \noindent\cardbox{\w}{\h}{\ctag{Comprendre}\ctitle{Un parcours narratif}\cbody{Vue d’ensemble métier, démarrage rapide, cas complet de bout en bout, et un chapitre qui vulgarise le moteur, sans jargon non expliqué.}}\hfill
-  \cardbox[bcard]{\w}{\h}{\ctag{Paramétrer}\ctitle{Un référentiel à deux niveaux}\cbody{230 méthodes~: l’usage courant en haut de page, classé par sous-groupes métier~; le paramétrage avancé et l’API bas niveau en fin de page.}}\hfill
-  \cardbox{\w}{\h}{\ctag{Exploiter}\ctitle{Des guides d’exploitation}\cbody{Lire les 14 CSV et le SVG produits, diagnostiquer les erreurs et les violations de règles.}}
-  \par\vspace{0.3cm}
-  \def\w{6.85cm}\def\h{1.4cm}
-  \noindent\cardbox[dcard]{\w}{\h}{\ctag[lime]{Zéro cuisine interne}\cbody[dmute]{Aucun chemin local, aucune trace des tests internes, des exemples valides tirés des signatures réelles, chaque sigle défini à sa première apparition.}}\hfill
-  \cardbox[dcard]{\w}{\h}{\ctag[lime]{Une source de vérité}\cbody[dmute]{Chaque tableau ou avertissement important a sa page de référence~; ailleurs, 2 à 3 phrases autonomes et un lien.}}
+  \noindent\begin{minipage}[t]{8.6cm}\vspace*{0pt}
+    \IfFileExists{img/doc-structure.png}
+      {\tikz\node[inner sep=0pt,draw=cline,line width=0.4pt]{\includegraphics[width=8.6cm,height=4.9cm,keepaspectratio]{img/doc-structure.png}};}
+      {\docmock}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{4.85cm}\vspace*{0pt}
+    \vspace{2pt}
+    \principle{01}{Le plan avant la première page}{Les sections et le gabarit d’une fiche sont fixés par nous, pas par l’agent.}
+    \principle{02}{Une section, un besoin}{Comprendre, démarrer, utiliser, chercher une méthode, lire les sorties, dépanner.}
+    \principle{03}{Une fiche type, répétée}{Schéma, description, appel avec exemple, paramètres~: chaque méthode a la même forme.}
+    \vspace{2pt}
+    \pull{L’agent remplit la structure~; il ne la décide pas.}
+  \end{minipage}
 \end{frame}}
-\note{Une bonne documentation se juge à la vitesse à laquelle le lecteur trouve sa réponse. On a séparé trois espaces~: comprendre, paramétrer, exploiter. Dans le référentiel, chaque page a deux parties~: en haut ce qu’on écrit au quotidien, classé par besoin métier, en bas la plomberie et les méthodes historiques, reliées au chapitre qui explique leur rôle. La page d’accueil du référentiel propose un index «\,Que voulez-vous faire~?\,», et on ne sépare jamais deux méthodes symétriques (Before / After, Min / Max) entre les deux parties. Quand aucun exemple n’existait pour une fonction, l’agent en a généré un à partir de la signature exacte dans le code.}
+\note{Avant d’écrire quoi que ce soit, on a fixé nous-mêmes le squelette de la documentation, et c’est le même pour les deux chantiers~: comprendre (vue d’ensemble métier, le moteur expliqué simplement), démarrer (prise en main, cas complet de bout en bout), utiliser (les entrées .dbg, JSON et C/C++), la référence (une fiche par méthode, l’usage courant en haut de page et le paramétrage avancé en bas), l’exploitation des sorties (CSV, SVG) et le dépannage (erreurs, exceptions, diagnostics). Chaque fiche méthode suit le même gabarit. Ensuite seulement on demande à l’agent de remplir les cases. Deux règles de rédaction complètent la structure~: aucune cuisine interne (pas de chemin local, pas de mention des tests internes, des exemples valides tirés des signatures réelles) et une seule source de vérité par tableau, les autres pages renvoyant vers elle en 2 ou 3 phrases.}
 
-% ===================================================================== chantier 2 · piloter
-{\light\kicker{01}{Chantier 2 · La méthode}
-\begin{frame}{Piloter~: un architecte, un agent, un plan}
+% ===================================================================== méthode · rôles (merges "un agent par rôle" and "piloter")
+{\light\kicker{01}{La méthode}
+\begin{frame}{La méthode~: chacun son rôle}
   \vspace{0.05cm}
-  \def\w{6.85cm}\def\h{1.45cm}
-  \noindent\cardbox{\w}{\h}{\ctag{L’architecte · réflexion}\ctitle{Garde la vision d’ensemble}\cbody{Conçoit le plan, critique les résultats, rédige des prompts précis et repère les angles morts.}}\hfill
-  \cardbox{\w}{\h}{\ctag{L’agent de dépôt · exécution}\ctitle{Reste sur des tâches courtes}\cbody{Lit le code, édite les fichiers, lance les builds~: du factuel, vérifiable sur le dépôt.}}
-  \par\vspace{0.35cm}
-  {\fontsize{8}{10}\selectfont\bfseries Pour chaque tâche structurante}\par\vspace{0.15cm}
-  \def\w{4.2cm}\def\h{1.55cm}
-  \noindent\cardbox{\w}{\h}{\ctag{1 · Plan, lecture seule}\cbody{L’agent explore, chiffre l’existant et propose une structure. Rien n’est modifié.}}%
-  \hfill\raisebox{-0.78cm}{\arr}\hfill
-  \cardbox[dcard]{\w}{\h}{\ctag[lime]{2 · Revue humaine}\cbody[dmute]{On valide le découpage, on corrige les contresens, on ajuste les priorités.}}%
-  \hfill\raisebox{-0.78cm}{\arr}\hfill
-  \cardbox{\w}{\h}{\ctag{3 · Build, même session}\cbody{L’agent exploite son diagnostic déjà en mémoire~: pas de seconde exploration.}}
-  \par\vspace{0.4cm}
-  \pull{Laisser l’agent vérifier les faits~: encadrer la taille des sorties, pas le nombre de commandes.}
+  \def\w{3.3cm}\def\h{1.8cm}
+  \noindent\cardbox[dcard]{\w}{\h}{\ctag[lime]{Humain · architecte}\ctitle[white]{Décide et relit}\cbody[dmute]{Fixe la structure, valide le plan, relit le rendu.}}\hfill
+  \cardbox{\w}{\h}{\ctag{Agent analyse}\ctitle{Audite, planifie}\vfill\leavevmode\chip{lecture seule}}\hfill
+  \cardbox{\w}{\h}{\ctag{Agent writer}\ctitle{Rédige les .rst}\vfill\leavevmode\chip[major]{écriture · bash}}\hfill
+  \cardbox{\w}{\h}{\ctag{Agent réorganisateur}\ctitle{Arborescence, liens}\vfill\leavevmode\chip[major]{bash · git mv}}
+  \par\vspace{0.42cm}
+  {\fontsize{8}{10}\selectfont\bfseries Variante LP-EasyDriver-LD~: un inventaire outillé avant d’écrire}\par\vspace{0.15cm}
+  \def\w{4.2cm}\def\h{1.4cm}
+  \noindent\cardbox{\w}{\h}{\ctag{1 · Scripts Python}\cbody{Détectent les méthodes à inclure~: API exposée, usage réel dans les exemples.}}%
+  \hfill\raisebox{-0.7cm}{\arr}\hfill
+  \cardbox[bcard]{\w}{\h}{\ctag{2 · Base de méthodes}\cbody{Les méthodes retenues, organisées et rapides d’accès.}}%
+  \hfill\raisebox{-0.7cm}{\arr}\hfill
+  \cardbox[dcard]{\w}{\h}{\ctag[lime]{3 · Le modèle}\cbody[dmute]{Interroge la base au lieu de rouvrir les .cpp à chaque question.}}
+  \par\vspace{0.42cm}
+  \pull{Un agent restreint se trompe moins~; un agent outillé ne relit pas le code à chaque question.}
 \end{frame}}
-\note{Le second chantier a séparé deux rôles~: un interlocuteur de réflexion, l’architecte, qui conçoit le plan et formule les prompts, et l’agent connecté au dépôt, qui lit, édite et compile. Le passage Plan puis Build dans la même session est déjà celui du premier chantier, en plus systématique. Une erreur à éviter~: limiter arbitrairement le nombre de commandes de l’agent, ce qui le pousse à deviner au lieu de vérifier. Mieux vaut le laisser lancer des scripts d’inventaire courts (un python3 -c qui croise les méthodes de l’API avec leur usage dans les exemples) et ne lire un fichier en entier que pour comprendre un algorithme à vulgariser.}
+\note{L’humain joue l’architecte~: il fixe la structure, valide les plans et relit le rendu. Les agents de dépôt ont chacun un rôle et des droits minimaux~: l’auditeur ne peut rien modifier, donc il se concentre sur l’analyse. Leçon au passage du premier chantier~: un agent res\_org dont les règles interdisaient le terminal ne pouvait pas déplacer de fichiers~; les droits doivent coller à la tâche. Sur LP-EasyDriver-LD, on a commencé par une phase d’analyse outillée~: des scripts Python détectent les méthodes à documenter et les rangent dans une base rapide d’accès. Le modèle consulte cette base au lieu de rouvrir le C++ à chaque question~: c’est plus fiable et moins coûteux. Autre réflexe~: ne pas limiter arbitrairement le nombre de commandes de l’agent, ce qui le pousse à deviner~; encadrer plutôt la taille des sorties.}
 
-% ===================================================================== chantier 2 · passes
-{\light\kicker{01}{Chantier 2 · La méthode}
-\begin{frame}{Cinq passes plutôt qu’un premier jet}
+% ===================================================================== méthode · passes (merges the two-pass workflow and the five passes)
+{\light\kicker{01}{La méthode}
+\begin{frame}{Planifier, valider, exécuter, itérer}
   \vspace{0.05cm}
-  \def\w{2.3cm}\def\h{2.6cm}
-  \noindent\wstep{\ctag{Passe 1}}{\ctitle{Fondations factuelles}}{\cbody{Cartographier le code, structure initiale, fiches exactes}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep{\ctag{Passe 2}}{\ctitle{Réorganisation}}{\cbody{Usage courant ou avancé, index par sous-groupes}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep{\ctag{Passe 3}}{\ctitle{Profondeur conceptuelle}}{\cbody{Vulgariser le moteur~: le pourquoi et le comment}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep[dcard]{\ctag[lime]{Passe 4}}{\ctitle[white]{Audit en lecture seule}}{\cbody[dmute]{Un rapport, aucune modification}}%
-  \hfill\raisebox{-1.3cm}{\arr}\hfill
-  \wstep{\ctag{Passe 5}}{\ctitle{Exécution par lots}}{\cbody{Session neuve, corrections tirées du rapport}}
-  \par\vspace{0.35cm}
-  \noindent{\labelfont\fontsize{5.4}{6}\selectfont\color{mute}À LA FIN DE CHAQUE PASSE}\hspace{6pt}%
-  \chip{build -a -E → 0 erreur · 0 warning}\,\chip{linter maison → PASS}\,\chip{relecture dans le navigateur}
-  \par\vspace{0.4cm}
-  \pull{Le premier jet n’est jamais le livrable~: les parties clés ont été reprises 4 à 5 fois.}
+  \def\w{2.3cm}\def\h{1.85cm}
+  \noindent\wstep{\ctag{01 · Analyser}}{\ctitle{Lecture seule}}{\cbody{Inventaire chiffré, rien n’est modifié}}%
+  \hfill\raisebox{-0.92cm}{\arr}\hfill
+  \wstep{\ctag{02 · Planifier}}{\ctitle{Un plan écrit}}{\cbody{Section par section, lot par lot}}%
+  \hfill\raisebox{-0.92cm}{\arr}\hfill
+  \wstep[dcard]{\ctag[lime]{03 · Valider}}{\ctitle[white]{Humain}}{\cbody[dmute]{On relit, on corrige les contresens}}%
+  \hfill\raisebox{-0.92cm}{\arr}\hfill
+  \wstep{\ctag{04 · Exécuter}}{\ctitle{Par lots}}{\cbody{Dans la même session que le plan}}%
+  \hfill\raisebox{-0.92cm}{\arr}\hfill
+  \wstep{\ctag{05 · Contrôler}}{{\ttfamily\fontsize{6.4}{8}\selectfont\bfseries sphinx-build -W}\par\vspace{2pt}}{\cbody{0 erreur, 0 warning}}
+
+  \vspace{0.1cm}
+  \noindent\begin{tikzpicture}[x=1cm,y=1cm]
+    \useasboundingbox (0,0.15) rectangle (13.9,-0.55);
+    \draw[blue,line width=0.7pt,dashed,-{Latex[length=3pt,width=3pt]}] (12.75,0.12) -- (12.75,-0.1) -- (1.15,-0.1) -- (1.15,0.12);
+    \node[font=\fontsize{6.2}{7}\selectfont,text=body] at (6.95,-0.38) {On itère~: 4 à 5 passes sur les parties clés};
+  \end{tikzpicture}
+
+  \vspace{0.2cm}
+  \def\w{6.85cm}\def\h{1.15cm}
+  \noindent\cardbox{\w}{\h}{\ctag[mute]{Variante · chantier 1}\cbody{Deux passes~: l’agent d’analyse propose, le writer applique le plan validé.}}\hfill
+  \cardbox{\w}{\h}{\ctag[mute]{Variante · chantier 2}\cbody{Cinq passes, dont un audit en lecture seule~; contrôle complété par un linter maison et une relecture dans le navigateur.}}
+  \par\vspace{0.25cm}
+  \pull{Le premier jet n’est jamais le livrable~: théoriser, valider, exécuter, puis recommencer.}
 \end{frame}}
-\note{Chaque passe élève la barre~: d’un contenu brut mais exact à une documentation pensée pour ses lecteurs. Le contrôle se fait à la fin de chaque grande passe, pas après chaque micro-édition~: build Sphinx complet depuis zéro (-a -E) avec 0 erreur et 0 warning comme seul critère, puis un petit linter Python maison qui verrouille les conventions (hiérarchie des soulignements de titres, format des signatures, aucun TODO ni chemin personnel ni dossier de test interne, intégrité des ancres). Règle d’or en réorganisant~: conserver toutes les ancres existantes, suivies d’une ligne vide, pour ne casser aucun lien. Enfin, une minute dans le navigateur (Ctrl + F5) repère ce qu’aucun script ne voit~: un bloc trop dense, un titre orphelin, une transition abrupte.}
+\note{Une seule méthode, appliquée aux deux chantiers. Rien n’est écrit tant que le plan n’est pas validé, et l’exécution se fait dans la même session que le plan, pour que l’agent garde son inventaire en mémoire. Le contrôle se fait à la fin de chaque grande passe, pas après chaque micro-édition. Sur LP-ShiftPlanner, deux passes ont suffi~: analyse en lecture seule puis exécution, avec sphinx-build -W comme critère objectif. Sur LP-EasyDriver-LD, cinq passes~: fondations factuelles, réorganisation orientée lecteur, vulgarisation du moteur, audit en lecture seule, puis corrections par lots. Le contrôle y est plus complet~: build depuis zéro (-a -E), un petit linter Python maison (hiérarchie des titres, signatures, aucun TODO ni chemin personnel, intégrité des ancres) et une minute de relecture dans le navigateur. Prochaine étape, détaillée à l’acte 2~: planifier avec un gros modèle et exécuter avec GLM 5.3 Flash.}
 
 % ===================================================================== chantier 2 · audit
-{\light\kicker{01}{Chantier 2 · L’audit}
+{\light\kicker{01}{L’audit}
 \begin{frame}{L’audit en lecture seule, le levier le plus rentable}
   \vspace{0.05cm}
   \noindent\begin{minipage}[t]{8.2cm}\vspace*{0pt}
@@ -533,8 +508,21 @@
 \end{frame}}
 \note{L’audit est une session dédiée avec interdiction absolue de modifier la documentation~: l’agent ne produit qu’un rapport Markdown. Il recense les contradictions factuelles entre chapitres par gravité, les phrases tronquées et incohérences de terminologie, la carte des doublons avec la source de vérité recommandée, les passages trop denses pour un non-spécialiste, et un plan d’action en lots avec les emplacements exacts. La passe suivante, en session neuve, applique les lots dans l’ordre~: d’abord la fiabilité factuelle et la terminologie, puis la déduplication et la lisibilité. Consignes de cette passe~: localiser par titre ou grep plutôt que par vieux numéros de ligne, revérifier dans le code tout point douteux, conserver les ancres, et finir par le linter puis le build à 0 warning.}
 
+% ===================================================================== 10 · prompting
+{\light\kicker{01}{Le prompting}
+\begin{frame}{Cinq astuces de prompting qui ont marché}
+  \vspace{0.05cm}
+  {\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
+  \tip{01}{Surcharge de périmètre}{\code[ink]{«\,IMPORTANT — ignore X, base-toi uniquement sur Y\,»}~: annule un comportement par défaut et économise du contexte.}
+  \tip{02}{Le code fait foi}{Si la doc contredit le C++ (.cpp, .h), c’est le C++ qui gagne. Rappelé à chaque mission.}
+  \tip{03}{Format explicite}{\code[ink]{«\,Indentation de 3 espaces, soulignements de la bonne longueur\,»}, même si le modèle connaît le RST.}
+  \tip{04}{Lecture seule annoncée}{\code[ink]{«\,RÈGLE STRICTE~: n’apporte AUCUNE modification\,»} en tête de chaque prompt d’audit.}
+  \tip{05}{Auto-validation}{L’agent lance lui-même \code{sphinx-build -W --keep-going} avant de rendre son rapport.}
+\end{frame}}
+\note{Le point commun de ces astuces~: être directif. Le modèle ne devine pas nos conventions, il faut les écrire, et lui donner un moyen de vérifier son propre travail.}
+
 % ===================================================================== chantier 2 · budget
-{\light\kicker{01}{Chantier 2 · Le budget}
+{\light\kicker{01}{Le budget}
 \begin{frame}{Environ 15\,€~: le budget vient de la méthode}
   \vspace{0.05cm}
   {\color{cline}\rule{\linewidth}{0.4pt}}\par\vspace{5pt}
@@ -547,6 +535,27 @@
   \pull{On économise en gérant le contexte, pas en bridant les vérifications de l’agent.}
 \end{frame}}
 \note{Les 15 euros ne viennent pas d’une restriction aveugle. Les deux habitudes qui pèsent le plus~: repartir d’une session vierge après chaque grosse phase d’édition, et au contraire garder la même session entre le plan et son exécution. Le reste relève du bon sens~: ne pas payer un niveau de réflexion élevé pour corriger l’orthographe, ne pas multiplier les sous-agents sur une tâche bien cadrée, et faire soi-même dans le terminal ce qui prend cinq secondes. On retrouvera les outils qui vont dans le même sens à l’acte 3.}
+
+% ===================================================================== 11 · leçons
+{\light\kicker{01}{Les leçons}
+\begin{frame}{Ce qu’on en retient}
+  \vspace{0.1cm}
+  \noindent\cardbox{6.95cm}{4.15cm}{%
+    \ctag{Constats}\vspace{3pt}
+    {\fontsize{6.8}{8.8}\selectfont\color{body}%
+    \li{\textbf{\color{ink}Découper} en petites tâches et écrire ses idées avant de lancer, sinon mauvaises surprises.}
+    \li{\textbf{\color{ink}Très dépendant du prompt}~: un agent qui dicte quoi toucher devient quasi obligatoire.}
+    \li{\textbf{\color{ink}Gourmand en contexte}~: chaque tour renvoie tout l’historique, le coût cumulé grimpe vite.}
+    \li{\textbf{\color{ink}GLM}~: moins cher et efficace ici, mais son résumé peut enjoliver. Vérifier le diff, pas le récit.}}}\hfill
+  \cardbox[dcard]{6.45cm}{4.15cm}{%
+    \ctag[lime]{À ajouter}\vspace{3pt}
+    {\fontsize{6.8}{8.8}\selectfont\color{white}%
+    \li[lime]{Un critère de réussite que l’agent vérifie lui-même (build, tests).}
+    \li[lime]{Une branche et un commit par étape.}
+    \li[lime]{Les règles stables dans AGENTS.md, pas dans chaque prompt.}
+    \li[lime]{Un gros modèle pour le plan (Mistral Large 4 ou GLM 5.3), GLM 5.3 Flash pour l’exécution.}}}
+\end{frame}}
+\note{Nuance sur la consommation~: la croissance n’est pas vraiment exponentielle. Chaque tour renvoie tout l’historique, donc le coût cumulé croît à peu près au carré de la longueur de la session. La conclusion reste la même~: des sessions courtes. Sur GLM~: juger sur le diff et le build, pas sur son résumé final.}
 
 % ===================================================================== 12 · acte 2
 \actslide{02}{ACTE 2}{Mieux configurer\\OpenCode}{Des agents déclarés dans le dépôt, la bonne température et le bon modèle à chaque étape.}
@@ -620,7 +629,7 @@
 
 % ===================================================================== 15 · modèles
 {\light\kicker{02}{Configurer OpenCode}
-\begin{frame}{Quatre modèles, quatre rôles}
+\begin{frame}{Trois modèles, trois rôles}
   \vspace{0.05cm}
   \noindent\tikz\node[card]{%
     \fontsize{6.2}{7.8}\selectfont\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{4pt}%
@@ -632,13 +641,12 @@
       \arrayrulecolor{cline}\hline
       mistral-large-4 & Planifier, auditer & {\color{body}Bon raisonnement pour écrire le plan, mais tendance connue à s’arrêter sans livrer~: à garder hors exécution} & 0.1\\ \hline
       zai-glm-5-3 & Planifier, ou exécuter les lots complexes & {\color{body}Notre REX~: efficace et moins cher. JSON d’appel d’outil parfois tronqué~: rester à température basse} & 0.2\\ \hline
-      zai-glm-5-3-flash & Exécuter dès que possible, vérifier & {\color{body}Une fois le plan écrit, un modèle rapide et économique suffit pour l’appliquer, lancer le build et relire un diff} & 0.1\\ \hline
-      mistral-medium-3-5 & Rédiger, traduire en français & {\color{body}Reformulations et passages en français, en appui du writer} & 0.3\\
+      zai-glm-5-3-flash & Exécuter dès que possible, vérifier & {\color{body}Une fois le plan écrit, un modèle rapide et économique suffit pour l’appliquer, lancer le build et relire un diff} & 0.1\\
     \end{tabular}};
   \par\vspace{0.45cm}
   \pull{Le principe~: un gros modèle planifie (Mistral Large 4 ou GLM 5.3), GLM 5.3 Flash exécute dès que la tâche le permet.}
 \end{frame}}
-\note{Les quatre modèles disponibles via notre LiteLLM. Le plan est l’étape qui demande le plus de raisonnement~: on la confie à un gros modèle, Mistral Large 4 ou GLM 5.3. Mistral Large 4 a été observé dans un test OpenCode qui raisonne sur un livrable sans jamais le créer~: bon pour planifier, risqué pour exécuter. Une fois le plan validé, l’exécution est plus mécanique~: GLM 5.3 Flash suffit le plus souvent, pour bien moins cher. On garde GLM 5.3 pour les lots complexes. GLM 5.x est connu pour produire parfois du JSON d’outil tronqué, d’où la température basse.}
+\note{Les trois modèles retenus parmi ceux disponibles via notre LiteLLM. Le plan est l’étape qui demande le plus de raisonnement~: on la confie à un gros modèle, Mistral Large 4 ou GLM 5.3. Mistral Large 4 a été observé dans un test OpenCode qui raisonne sur un livrable sans jamais le créer~: bon pour planifier, risqué pour exécuter. Une fois le plan validé, l’exécution est plus mécanique~: GLM 5.3 Flash suffit le plus souvent, pour bien moins cher. On garde GLM 5.3 pour les lots complexes. GLM 5.x est connu pour produire parfois du JSON d’outil tronqué, d’où la température basse.}
 
 % ===================================================================== 16 · pipeline
 {\light\kicker{02}{Configurer OpenCode}
